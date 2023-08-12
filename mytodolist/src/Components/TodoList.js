@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faEdit, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faEdit, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const TodoList = () => {
   const [tasks, setTasks] = useState([]);
   const [taskText, setTaskText] = useState("");
-// Load tasks from local storage on component mount
-useEffect(() => {
-  const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
-  setTasks(savedTasks);
-}, []);
+  // Load tasks from local storage on component mount
+  useEffect(() => {
+    const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    setTasks(savedTasks);
+  }, []);
 
-// Save tasks to local storage whenever tasks change
-useEffect(() => {
-  localStorage.setItem('tasks', JSON.stringify(tasks));
-}, [tasks]);
+  // Save tasks to local storage whenever tasks change
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   const addTask = (e) => {
     e.preventDefault();
@@ -53,13 +53,14 @@ useEffect(() => {
           value={taskText}
           onChange={(e) => setTaskText(e.target.value)}
         />
-        <FontAwesomeIcon icon={faPlus} onClick={addTask} className="addicon"/>
+        <FontAwesomeIcon icon={faPlus} onClick={addTask} className="addicon" />
       </div>
       <ul className="task-list">
         {tasks.map((task, index) => (
           <li key={index} className={task.done ? "done" : ""}>
             <input
               type="checkbox"
+              className="checkbox"
               checked={task.done}
               onChange={() => toggleDone(index)}
             />
@@ -68,7 +69,11 @@ useEffect(() => {
               value={task.text}
               onChange={(e) => editTask(index, e.target.value)}
             />
-            <FontAwesomeIcon icon={faTrash} className="icon" onClick={() => deleteTask(index)}/>
+            <FontAwesomeIcon
+              icon={faTrash}
+              className="deleteicon"
+              onClick={() => deleteTask(index)}
+            />
           </li>
         ))}
       </ul>

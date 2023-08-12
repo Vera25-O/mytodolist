@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash, faEdit, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const TodoList = () => {
   const [tasks, setTasks] = useState([]);
@@ -40,7 +42,7 @@ const TodoList = () => {
           value={taskText}
           onChange={(e) => setTaskText(e.target.value)}
         />
-        <button onClick={addTask}>Add</button>
+        <FontAwesomeIcon icon={faPlus} onClick={addTask}/>
       </div>
       <ul className="task-list">
         {tasks.map((task, index) => (
@@ -55,7 +57,7 @@ const TodoList = () => {
               value={task.text}
               onChange={(e) => editTask(index, e.target.value)}
             />
-            <button onClick={() => deleteTask(index)}>Delete</button>
+            <FontAwesomeIcon icon={faTrash} onClick={() => deleteTask(index)}/>
           </li>
         ))}
       </ul>

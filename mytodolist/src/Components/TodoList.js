@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
-// import './TodoApp.css';
+import React, { useState } from "react";
 
 const TodoList = () => {
   const [tasks, setTasks] = useState([]);
-  const [taskText, setTaskText] = useState('');
+  const [taskText, setTaskText] = useState("");
 
   const addTask = () => {
-    if (taskText.trim() !== '') {
+    if (taskText.trim() !== "") {
       setTasks([...tasks, { text: taskText, done: false }]);
-      setTaskText('');
+      setTaskText("");
     }
   };
 
@@ -45,7 +44,7 @@ const TodoList = () => {
       </div>
       <ul className="task-list">
         {tasks.map((task, index) => (
-          <li key={index} className={task.done ? 'done' : ''}>
+          <li key={index} className={task.done ? "done" : ""}>
             <input
               type="checkbox"
               checked={task.done}

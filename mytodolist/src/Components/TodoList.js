@@ -1,12 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faEdit, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const TodoList = () => {
   const [tasks, setTasks] = useState([]);
   const [taskText, setTaskText] = useState("");
+// Load tasks from local storage on component mount
+useEffect(() => {
+  const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+  setTasks(savedTasks);
+}, []);
 
-  const addTask = () => {
+// Save tasks to local storage whenever tasks change
+useEffect(() => {
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+}, [tasks]);
+
+  const addTask = (e) => {
+    e.preventDefault();
     if (taskText.trim() !== "") {
       setTasks([...tasks, { text: taskText, done: false }]);
       setTaskText("");
@@ -42,7 +53,7 @@ const TodoList = () => {
           value={taskText}
           onChange={(e) => setTaskText(e.target.value)}
         />
-        <FontAwesomeIcon icon={faPlus} onClick={addTask}/>
+        <FontAwesomeIcon icon={faPlus} onClick={addTask} className="addicon"/>
       </div>
       <ul className="task-list">
         {tasks.map((task, index) => (
@@ -57,7 +68,7 @@ const TodoList = () => {
               value={task.text}
               onChange={(e) => editTask(index, e.target.value)}
             />
-            <FontAwesomeIcon icon={faTrash} onClick={() => deleteTask(index)}/>
+            <FontAwesomeIcon icon={faTrash} className="icon" onClick={() => deleteTask(index)}/>
           </li>
         ))}
       </ul>

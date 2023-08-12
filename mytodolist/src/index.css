@@ -1,3 +1,6 @@
+body{
+  background-color: black;
+}
 .todo-app {
   text-align: center;
   margin: 50px auto;
@@ -14,12 +17,13 @@
   padding: 5px;
 }
 
-.task-input button {
-  padding: 5px 10px;
+.addicon {
+  padding: 5px 5px;
   background-color: #007bff;
   color: #fff;
   border: none;
   cursor: pointer;
+  height: 5vh;
 }
 
 .task-list {
@@ -47,11 +51,11 @@
   padding: 5px;
 }
 
-.task-list button {
-  padding: 2px 5px;
-  background-color: #dc3545;
-  color: #fff;
+.icon {
+  padding: 5px 5px;
+  height: 2vh;
+  color: red;
   border: none;
   cursor: pointer;
-  margin-left: 5px;
+  /* margin-left: 5px; */
 }

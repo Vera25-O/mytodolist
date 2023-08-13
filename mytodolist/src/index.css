@@ -60,8 +60,8 @@ h1{
 }
 
 .task-list input[type="checkbox"] {
-  margin-right: 10px;
-background-color: black;
+  margin-right: 0px;
+width: 10%;
 }
 
 .task-list input[type="text"] {
@@ -79,9 +79,4 @@ input{
   color:mintcream;
   border: none;
   cursor: pointer;
-}
-
-.checkbox{
-  
-  width: 10%;
 }
